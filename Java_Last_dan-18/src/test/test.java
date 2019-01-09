@@ -48,6 +48,21 @@ class func10 {
             mat[nowno] = 30;
         }
     }
+    
+    public boolean search(Shotgun g, int i){
+        String[] avg2 = new String[MAX + 1];
+        String[] name2 = new String[MAX + 1];       
+
+        System.out.println("번호  이름    국어  영어  수학  총점  평균    등수");
+        g.print_line(52);
+
+        avg2[i] = String.format("%.2f", avg[i]);
+        name2[i] = String.format("%-5s", name[i]);
+        System.out.println(" " + num[i] + "   " + name2[i] + "    "
+               + kor[i] + "  " + eng[i] + "  " + mat[i] + "  " + sum[i]
+               + "  " + avg2[i] + "  " + r[i]);
+        return true;
+    }
 }
 
 class Shotgun extends func10 {
@@ -246,33 +261,22 @@ class Shotgun extends func10 {
     }
 
     // 3.학생정보검색
-    void search() {
-        String[] avg2 = new String[MAX + 1];
-        String[] name2 = new String[MAX + 1];
-        String tmp = null; // 임시 문자열 지역변수
+    void search(Shotgun g) {
         print_line();
         System.out.print("이름 입력하시오 : ");
-        tmp = sc.next();
+        String tmp = sc.next();
+
         print_line(52);
 
-        int local_status = 0;
+        boolean local_status = false;
 
         for (int i = 0; i < motmp; i++) {
             if (tmp.equals(name[i].toString())) {
-
-                System.out.println("번호  이름    국어  영어  수학  총점  평균    등수");
-                print_line(52);
-
-                avg2[i] = String.format("%.2f", avg[i]);
-                name2[i] = String.format("%-5s", name[i]);
-                System.out.println(" " + num[i] + "   " + name2[i] + "    "
-                        + kor[i] + "  " + eng[i] + "  " + mat[i] + "  " + sum[i]
-                        + "  " + avg2[i] + "  " + r[i]);
-                local_status = 1;
+                local_status=super.search(g, i);
             }
 
         }
-        if (local_status == 0) {
+        if (local_status == false) {
             System.out.println(string_fail_name);
         }
         print_line(52);
@@ -457,7 +461,7 @@ public class test {
                     g.printf_result();
                     break;
                 case 3: // 3.학생정보검색
-                    g.search();
+                    g.search(g);
                     break;
                 case 4: // 4.학생정보수정
                     g.Change();
