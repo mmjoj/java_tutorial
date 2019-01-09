@@ -2,6 +2,32 @@ package test;
 import java.util.Scanner;
 
 class func10{
+	func10()
+	{
+		
+	}
+
+	private void func10(int nowno) // 생성자
+	{
+		func10 f = new func10();
+		
+		if(name[nowno].toString().equals("0")){
+			name[nowno]="홍길동";
+		}
+		
+		if(kor[nowno]==0){
+			kor[nowno]=30;
+		}
+		
+		if(eng[nowno]==0){
+			eng[nowno]=30;
+		}
+		
+		if(mat[nowno]==0){
+			mat[nowno]=30;
+		}
+	}
+	
         public final int MAX=10;
         public static int motmp=0;
         
@@ -72,7 +98,6 @@ class func10{
     					sum[j]=sum[i];
     					sum[i]=tmp;
     					
-    					
     					tmp=r[j];
     					r[j]=r[i];
     					r[i]=tmp;
@@ -84,8 +109,6 @@ class func10{
     					tmps=name[j];
     					name[j]=name[i];
     					name[i]=tmps;
-    					
-    					
     				}
     			}
     		}
@@ -115,6 +138,8 @@ class func10{
 	            System.out.print((motmp+1)+"번 수학점수를 입력하시오 : ");
 	            mat[motmp] = sc.nextInt();    
 	            num[motmp]=motmp+1;
+
+	            func10(motmp);
 	            
                 sum_func();
                 avg_func();
@@ -127,8 +152,10 @@ class func10{
         		System.out.println("--현재 10명을 모두 입력했습니다. 더 이상 입력할 수 없습니다.");
         	}
         }
-        
-        void printf_result(){
+
+
+
+		void printf_result(){
             String[] avg2= new String[MAX+1];
             String[] name2= new String[MAX+1];
         	
@@ -172,5 +199,5 @@ public class test {
 		                	break;
 	                }
                 }
-        }   
+        }
 }

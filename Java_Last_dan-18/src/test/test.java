@@ -4,21 +4,22 @@ import java.util.Scanner;
 
 class func10 {
 
-    protected final int MAX = 10; // 최대 10명
-    protected final String string_fail = "--잘못된 값입니다. 다시 입력해주세요.";
-    protected final String string_fail_name = "--입력하신 이름은 없는 값입니다.";
-    protected static Scanner sc = new Scanner(System.in); // 입력 가능하게
-    protected static String[] name = null; // 이름
-    protected static int[] num = null; // 번호
-    protected static int[] kor = null; // 국어 점수
-    protected static int[] eng = null; // 영어 점수
-    protected static int[] mat = null; // 수학 점수
-    protected static int[] sum = null; // 총점
-    protected static double[] avg = null; // 평균
-    protected static int[] r = null; // 랭크
-    protected static int motmp = 0; // 현재 몇번째 학생까지 있는가
+    Scanner sc = new Scanner(System.in);
 
-    protected func10() {
+    final int MAX = 10;
+    final String string_fail = "--잘못된 값입니다. 다시 입력해주세요.";
+    final String string_fail_name = "--입력하신 이름은 없는 값입니다.";
+    static String[] name = null;
+    static int[] num = null;
+    static int[] kor = null;
+    static int[] eng = null;
+    static int[] mat = null;
+    static int[] sum = null;
+    static double[] avg = null;
+    static int[] r = null;
+    static int motmp = 0;
+
+    public func10() {
         num = new int[MAX + 1];
         kor = new int[MAX + 1];
         eng = new int[MAX + 1];
@@ -29,7 +30,7 @@ class func10 {
         r = new int[MAX + 1];
     }
 
-    protected func10(int nowno) // 생성자
+    public func10(int nowno) // 생성자
     {
         if (name[nowno].toString().equals("0")) {
             name[nowno] = "홍길동";
@@ -47,10 +48,10 @@ class func10 {
             mat[nowno] = 30;
         }
     }
-
-    protected boolean search(Shotgun g, int i) {
+    
+    public boolean search(Shotgun g, int i){
         String[] avg2 = new String[MAX + 1];
-        String[] name2 = new String[MAX + 1];
+        String[] name2 = new String[MAX + 1];       
 
         System.out.println("번호  이름    국어  영어  수학  총점  평균    등수");
         g.print_line(52);
@@ -58,38 +59,38 @@ class func10 {
         avg2[i] = String.format("%.2f", avg[i]);
         name2[i] = String.format("%-5s", name[i]);
         System.out.println(" " + num[i] + "   " + name2[i] + "    "
-                + kor[i] + "  " + eng[i] + "  " + mat[i] + "  " + sum[i]
-                + "  " + avg2[i] + "  " + r[i]);
+               + kor[i] + "  " + eng[i] + "  " + mat[i] + "  " + sum[i]
+               + "  " + avg2[i] + "  " + r[i]);
         return true;
     }
 }
 
 class Shotgun extends func10 {
 
-    protected void sum_func() {
+    void sum_func() {
         for (int i = 0; i < MAX; i++) {
             sum[i] = kor[i] + eng[i] + mat[i];
         }
     }
 
-    protected void avg_func() {
+    void avg_func() {
         for (int i = 0; i < MAX; i++) {
             avg[i] = sum[i] / 3.0;
         }
     }
 
-    protected void print_line() {
+    void print_line() {
         System.out.println("---------------------------------");
     }
 
-    protected void print_line(int n) {
+    void print_line(int n) {
         for (int i = 0; i < n; i++) {
             System.out.print("-");
         }
         System.out.println("");
     }
 
-    protected void rank() {
+    void rank() {
         for (int i = 0; i < motmp + 1; i++) {
             int k = 0;
             for (int j = 0; j < motmp + 1; j++) {
@@ -102,7 +103,7 @@ class Shotgun extends func10 {
         }
     }
 
-    protected void align() {
+    void align() {
         int tmp = 0;
         double tmpf = 0.0f;
         String tmps;
@@ -146,7 +147,7 @@ class Shotgun extends func10 {
         }
     }
 
-    protected void printf_start() {
+    void printf_start() {
         print_line();
         System.out.println("<<원하시는 번호를 선택하세요>>");
         print_line();
@@ -160,27 +161,27 @@ class Shotgun extends func10 {
     }
 
     // 1.학생정보입력
-    protected void scan_start() {
+    void scan_start() {
         String tempgap = null;
         int tempstatus = 0;
 
         if (motmp < MAX) {
             print_line();
-
+            
             int local_status = 0;
-
-            while (local_status == 0) {
+            
+            while(local_status==0){
                 System.out.print((motmp + 1) + "번 이름 입력하시오 : ");
                 name[motmp] = sc.next();
-                local_status = 1;
+                local_status=1;
                 for (int i = 0; i < motmp; i++) {
                     if (name[motmp].equals(name[i].toString())) {
                         System.out.println("--중복입니다. 다른 이름을 입력해주세요.");
-                        local_status = 0;
+                        local_status=0;
                     }
                 }
             }
-
+            
             while (tempstatus == 0) {
                 System.out.print((motmp + 1) + "번 국어점수를 입력하시오 : ");
                 tempgap = sc.next();
@@ -242,7 +243,7 @@ class Shotgun extends func10 {
     }
 
     // 2.학생정보출력
-    protected void printf_result() {
+    void printf_result() {
         String[] avg2 = new String[MAX + 1];
         String[] name2 = new String[MAX + 1];
 
@@ -260,7 +261,7 @@ class Shotgun extends func10 {
     }
 
     // 3.학생정보검색
-    protected void search(Shotgun g) {
+    void search(Shotgun g) {
         print_line();
         System.out.print("이름 입력하시오 : ");
         String tmp = sc.next();
@@ -271,7 +272,7 @@ class Shotgun extends func10 {
 
         for (int i = 0; i < motmp; i++) {
             if (tmp.equals(name[i].toString())) {
-                local_status = super.search(g, i);
+                local_status=super.search(g, i);
             }
 
         }
@@ -282,7 +283,7 @@ class Shotgun extends func10 {
     }
 
     // 4. 학생정보수정
-    protected void Change() {
+    void Change() {
         String[] avg2 = new String[MAX + 1];
         String[] name2 = new String[MAX + 1];
         String tmp = null; // 임시 문자열 지역변수
@@ -346,8 +347,6 @@ class Shotgun extends func10 {
                     }
                 }
 
-                new func10(i);
-                
                 print_line();
                 System.out.println("수정후 점수");
                 print_line(52);
@@ -359,14 +358,16 @@ class Shotgun extends func10 {
                 System.out.println(" " + num[i] + "   " + name2[i] + "    "
                         + kor[i] + "  " + eng[i] + "  " + mat[i] + "  " + sum[i]
                         + "  " + avg2[i] + "  " + r[i]);
-
                 
+                new func10(i);
                 sum_func();
                 avg_func();
                 rank();
                 align();
 
                 local_status = 1;
+
+
 
                 i = motmp;
             }
@@ -378,7 +379,7 @@ class Shotgun extends func10 {
     }
 
     // 5. 학생정보삭제
-    protected void delete() {
+    void delete() {
         String[] avg2 = new String[MAX + 1];
         String[] name2 = new String[MAX + 1];
         String tmp = null; // 임시 문자열 지역변수
@@ -424,7 +425,7 @@ class Shotgun extends func10 {
     }
 
     // 숫자 판별
-    protected static boolean isStringInt(String s) {
+    public static boolean isStringInt(String s) {
         try {
             Integer.parseInt(s);
             return true;
@@ -436,12 +437,15 @@ class Shotgun extends func10 {
 }
 
 public class test {
+
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        func10 f = new func10(); // 엄마 선언부
         Shotgun g = new Shotgun(); // 자식 실행부
 
         while (true) {
             g.printf_start();
-            String tempgap = g.sc.next();
+            String tempgap = sc.next();
             int tmepint = 0;
             if (g.isStringInt(tempgap)) {
                 if (Integer.parseInt(tempgap) <= 6 && Integer.parseInt(tempgap) >= 1) {
@@ -469,7 +473,7 @@ public class test {
                     System.exit(0);
                     break;
                 default:
-                    System.out.println(g.string_fail);
+                    System.out.println(f.string_fail);
                     break;
             }
         }

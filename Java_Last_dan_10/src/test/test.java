@@ -36,60 +36,12 @@ class func10{
                 }
         }
         
-        void align(){
-        	int tmp=0;
-        	double tmpf=0.0f;
-        	String tmps;
-        	
-    		for(int i=0;i<3;i++)
-    		{
-    			for(int j=i;j<3;j++)
-    			{
-    				if(sum[i]<sum[j])
-    				{
-    					tmp=num[j];
-    					num[j]=num[i];
-    					num[i]=tmp;
-    					
-    					tmp=kor[j];
-    					kor[j]=kor[i];
-    					kor[i]=tmp;
-    					
-    					tmp=eng[j];
-    					eng[j]=eng[i];
-    					eng[i]=tmp;
-    					
-    					tmp=mat[j];
-    					mat[j]=mat[i];
-    					mat[i]=tmp;
-    					
-    					tmp=sum[j];
-    					sum[j]=sum[i];
-    					sum[i]=tmp;
-    					
-    					tmp=r[j];
-    					r[j]=r[i];
-    					r[i]=tmp;
-    					
-    					tmpf=avg[j];
-    					avg[j]=avg[i];
-    					avg[i]=tmpf;
-    					
-    					tmps=name[j];
-    					name[j]=name[i];
-    					name[i]=tmps;
-    					
-    					
-    				}
-    			}
-    		}
-        }
 }
 public class test {
         public static void main(String[] args) {
                 Scanner stdin = new Scanner(System.in);
-                String[] avg= new String[3];
-                String[] name= new String[3];
+                String[] avg_n= new String[3];
+                String[] name_n= new String[3];
                 func10 f = new func10();
                 
                 f.print_line();
@@ -101,8 +53,7 @@ public class test {
                         System.out.print((i+1)+"번 영어점수를 입력하시오 : ");
                         f.eng[i] = stdin.nextInt();
                         System.out.print((i+1)+"번 수학점수를 입력하시오 : ");
-                        f.mat[i] = stdin.nextInt();    
-                        f.num[i]=i+1;
+                        f.mat[i] = stdin.nextInt();        
                 }
                 f.print_line();
                 
@@ -110,15 +61,13 @@ public class test {
                 f.avg_func();
                 f.rank();
                 
-                f.align();
-                
                 f.print_line(40);
                 System.out.println("번호  이름    국어  영어  수학  총점  평균    등수");
                 f.print_line(40);
                 for(int i=0;i<3;i++){
-                        avg[i] = String.format("%.2f",f.avg[i]);
-                        name[i] = String.format("%-5s",f.name[i]);
-                        System.out.println(" "+ f.num[i]+"   "+name[i]+"    "+f.kor[i]+"  "+f.eng[i]+"  "+f.mat[i]+"  "+f.sum[i]+"  "+avg[i]+"  "+f.r[i]);
+                        avg_n[i] = String.format("%.2f",f.avg[i]);
+                        name_n[i] = String.format("%-5s",f.name[i]);
+                        System.out.println(" "+ (i+1)+"   "+name_n[i]+"    "+f.kor[i]+"  "+f.eng[i]+"  "+f.mat[i]+"  "+f.sum[i]+"  "+avg_n[i]+"  "+f.r[i]);
                 }
                 
                 f.print_line(40);
