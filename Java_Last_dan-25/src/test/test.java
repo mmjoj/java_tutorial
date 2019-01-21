@@ -38,6 +38,34 @@ class Student implements Comparable<Student> {
         this.rank = 1;
     }
 
+    public String getName() {return name;}
+    public void setName(String name){this.name=name;}
+    
+    public int getNumber(){return num;}
+    public void setNumber(int number) {this.num=num;}
+    
+    public int getKor() {return kor;}
+    public void setKor(int number){this.kor=kor;}
+    
+    public int getEng() {return eng;}
+    public void setEng(int number){this.eng=eng;}
+    
+    public int getMat() {return mat;}
+    public void setMat(int number){this.mat=mat;}
+    
+    public int getSum() {return sum;}
+    public void setSum(int number){this.sum=this.kor+this.eng+this.mat;}
+    
+    public double getAvg() {return avg;}
+    public void setAvg(double number){
+        double temp =this.sum / 3.0;
+        DecimalFormat format = new DecimalFormat(".##");
+        String str = format.format(temp);
+        this.avg = Double.parseDouble(str);
+    }
+    
+    
+    
     public void Dash() {
         System.out.println("---------------------------------");
     }
@@ -79,6 +107,8 @@ class Student implements Comparable<Student> {
         } else {
             Dash();
 
+            
+            
             boolean tmp_status = false;
             String tmp_gap = null;
 
@@ -87,7 +117,7 @@ class Student implements Comparable<Student> {
                 tmp_gap = sc.next();
                 tmp_status = true;
                 for (int i = 0; i < NOW; i++) {
-                    if (tmp_gap.equals(student_all.get(i).name)) {
+                    if (tmp_gap.equals(student_all.get(i).getName())) {
                         System.out.println("--중복입니다. 다른 이름을 입력해주세요.");
                         tmp_status = false;
                     }
@@ -148,7 +178,7 @@ class Student implements Comparable<Student> {
             for (int i = 0; i < NOW + 1; i++) {
                 int tempintgap = 0;
                 for (int j = 0; j < NOW + 1; j++) {
-                    if (student_all.get(i).sum < student_all.get(j).sum) {
+                    if (student_all.get(i).getSum() < student_all.get(j).getSum() ) {
                         tempintgap = tempintgap + 1;
                     }
                 }
@@ -164,8 +194,6 @@ class Student implements Comparable<Student> {
 
     // 2.학생정보출력
     protected void printf_result(ArrayList<Student> student_all) {
-
-        //    align();
         Dash_line(52);
         System.out.println(string_menu);
         Dash_line(52);
